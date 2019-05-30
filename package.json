@@ -1,0 +1,45 @@
+{
+  "name": "@hi-level/three-csg",
+  "version": "1.0.0",
+  "description": "CSG library for use with THREE.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "build": "tsc",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hi-Level/three-csg.git"
+  },
+  "keywords": [
+    "Three",
+    "CSG"
+  ],
+  "author": "The Mezzanine Floor Group",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hi-Level/three-csg/issues"
+  },
+  "homepage": "https://github.com/Hi-Level/three-csg#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.13",
+    "@types/node": "^12.0.3",
+    "jest": "^24.8.0",
+    "three": "^0.104.0",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.16.0",
+    "typescript": "^3.5.1"
+  },
+  "peerDependencies": {
+    "three": "^0.104.0"
+  },
+  "files": [
+    "lib/**/*"
+  ]
+}
