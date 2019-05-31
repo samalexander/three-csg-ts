@@ -29,15 +29,15 @@
   "homepage": "https://github.com/Hi-Level/three-csg#readme",
   "devDependencies": {
     "@types/jest": "^24.0.13",
-    "@types/node": "^12.0.3",
+    "@types/node": "^10.14.7",
     "jest": "^24.8.0",
-    "three": "^0.104.0",
+    "three": "^0.105.1",
     "ts-jest": "^24.0.2",
-    "tslint": "^5.16.0",
+    "tslint": "^5.17.0",
     "typescript": "^3.5.1"
   },
   "peerDependencies": {
-    "three": "^0.104.0"
+    "three": ">= 0.104.0 < 1"
   },
   "files": [
     "lib/**/*"
