@@ -1,5 +1,9 @@
 {
-    "extends": [
-        "tslint:recommended"
-    ]
+    "extends": "tslint-config-standard",
+    "rules": {
+        "semicolon": true,
+        "ter-indent": false,
+        "space-before-function-paren": false,
+        "no-empty": false
+    }
 }
