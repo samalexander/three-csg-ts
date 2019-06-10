@@ -12,8 +12,9 @@ export class CSG {
     }
 
     static fromGeometry(geom: any) {
-        if (geom.isBufferGeometry)
+        if (geom.isBufferGeometry) {
             geom = new Geometry().fromBufferGeometry(geom);
+        }
         const fs = geom.faces;
         const vs = geom.vertices;
         const polys = [];
@@ -21,8 +22,9 @@ export class CSG {
         for (let i = 0; i < fs.length; i++) {
             const f = fs[i];
             const vertices = [];
-            for (let j = 0; j < 3; j++)
+            for (let j = 0; j < 3; j++) {
                 vertices.push(new Vertex(vs[f[fm[j]]], f.vertexNormals[j], geom.faceVertexUvs[0][i][j]));
+            }
 
             polys.push(new Polygon(vertices));
         }
@@ -51,8 +53,9 @@ export class CSG {
             const v0 = vs.length;
             const pvlen = pvs.length;
 
-            for (const pv of pvs)
+            for (const pv of pvs) {
                 vs.push(new Vector3().copy(pv.pos));
+            }
 
             for (let j = 3; j <= pvlen; j++) {
                 const fc = new Face3(v0, v0 + j - 2, v0 + j - 1);
@@ -84,18 +87,19 @@ export class CSG {
     }
 
     static iEval(tokens: Mesh, index = 0) {
-        if (typeof tokens === 'string')
+        if (typeof tokens === 'string') {
             CSG.currentOp = tokens;
-        else if (tokens instanceof Array) {
-            for (const token of tokens)
+        } else if (tokens instanceof Array) {
+            for (const token of tokens) {
                 CSG.iEval(token, 0);
+            }
         } else if (typeof tokens === 'object') {
             const op = CSG.currentOp;
             tokens.updateMatrix();
             tokens.updateMatrixWorld();
-            if (!CSG.sourceMesh)
+            if (!CSG.sourceMesh) {
                 CSG.currentPrim = CSG.fromMesh(CSG.sourceMesh = tokens);
-            else {
+            } else {
                 CSG.nextPrim = CSG.fromMesh(tokens);
                 CSG.currentPrim = CSG.currentPrim[op](CSG.nextPrim);
             }
@@ -192,14 +196,15 @@ export class CSG {
 class Vector extends Vector3 {
 
     constructor(x: number, y: number, z: number) {
-        if (arguments.length === 3)
+        if (arguments.length === 3) {
             super(x, y, z);
-        else if (Array.isArray(x))
+        } else if (Array.isArray(x)) {
             super(x[0], x[1], x[2]);
-        else if (typeof x === 'object')
+        } else if (typeof x === 'object') {
             this.copy(x);
-        else
+        } else {
             throw new Error('Invalid constructor to vector');
+        }
     }
 
     clone(): any {
@@ -347,10 +352,12 @@ class Plane {
                     const tj = types[j];
                     const vi = polygon.vertices[i];
                     const vj = polygon.vertices[j];
-                    if (ti !== BACK)
+                    if (ti !== BACK) {
                         f.push(vi);
-                    if (ti !== FRONT)
+                    }
+                    if (ti !== FRONT) {
                         b.push(ti !== BACK ? vi.clone() : vi);
+                    }
                     if ((ti | tj) === SPANNING) {
                         const t = (this.w - this.normal.dot(vi.pos)) / this.normal.dot(vj.pos.minus(vi.pos));
                         const v = vi.interpolate(vj, t);
@@ -358,10 +365,12 @@ class Plane {
                         b.push(v.clone());
                     }
                 }
-                if (f.length >= 3)
+                if (f.length >= 3) {
                     front.push(new Polygon(f, polygon.shared));
-                if (b.length >= 3)
+                }
+                if (b.length >= 3) {
                     back.push(new Polygon(b, polygon.shared));
+                }
                 break;
         }
     }
@@ -372,7 +381,7 @@ class Plane {
  * be coplanar and form a convex loop. They do not have to be `Vertex`
  * instances but they must behave similarly (duck typing can be used for
  * customization).
- * 
+ *
  * Each convex polygon has a `shared` property, which is shared between all
  * polygons that are clones of each other or were split from the same polygon.
  * This can be used to define per-polygon properties (such as surface color).
@@ -420,8 +429,9 @@ class Node {
         this.front = null;
         this.back = null;
         this.polygons = [];
-        if (polygons)
+        if (polygons) {
             this.build(polygons);
+        }
     }
     clone() {
         const node = new Node();
@@ -436,14 +446,17 @@ class Node {
 
     // Convert solid space to empty space and empty space to solid space.
     invert() {
-        for (const polygon of this.polygons)
+        for (const polygon of this.polygons) {
             polygon.flip();
+        }
 
         this.plane.flip();
-        if (this.front)
+        if (this.front) {
             this.front.invert();
-        if (this.back)
+        }
+        if (this.back) {
             this.back.invert();
+        }
         const temp = this.front;
         this.front = this.back;
         this.back = temp;
@@ -452,15 +465,17 @@ class Node {
     // Recursively remove all polygons in `polygons` that are inside this BSP
     // tree.
     clipPolygons(polygons: Polygon[]) {
-        if (!this.plane)
+        if (!this.plane) {
             return polygons.slice();
+        }
         let front: Polygon[] = [];
         let back: Polygon[] = [];
         for (const polygon of polygons) {
             this.plane.splitPolygon(polygon, front, back, front, back);
         }
-        if (this.front)
+        if (this.front) {
             front = this.front.clipPolygons(front);
+        }
         back = this.back ? this.back.clipPolygons(back) : [];
         return front.concat(back);
     }
@@ -469,19 +484,23 @@ class Node {
     // `bsp`.
     clipTo(bsp: Node) {
         this.polygons = bsp.clipPolygons(this.polygons);
-        if (this.front)
+        if (this.front) {
             this.front.clipTo(bsp);
-        if (this.back)
+        }
+        if (this.back) {
             this.back.clipTo(bsp);
+        }
     }
 
     // Return a list of all polygons in this BSP tree.
     allPolygons() {
         let polygons = this.polygons.slice();
-        if (this.front)
+        if (this.front) {
             polygons = polygons.concat(this.front.allPolygons());
-        if (this.back)
+        }
+        if (this.back) {
             polygons = polygons.concat(this.back.allPolygons());
+        }
         return polygons;
     }
 
@@ -490,23 +509,27 @@ class Node {
     // nodes there. Each set of polygons is partitioned using the first polygon
     // (no heuristic is used to pick a good split).
     build(polygons: Polygon[]) {
-        if (!polygons.length)
+        if (!polygons.length) {
             return;
-        if (!this.plane)
+        }
+        if (!this.plane) {
             this.plane = polygons[0].plane.clone();
+        }
         const front: Polygon[] = [];
         const back: Polygon[] = [];
         for (const polygon of polygons) {
             this.plane.splitPolygon(polygon, this.polygons, this.polygons, front, back);
         }
         if (front.length) {
-            if (!this.front)
+            if (!this.front) {
                 this.front = new Node();
+            }
             this.front.build(front);
         }
         if (back.length) {
-            if (!this.back)
+            if (!this.back) {
                 this.back = new Node();
+            }
             this.back.build(back);
         }
     }
