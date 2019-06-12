@@ -1,0 +1,42 @@
+# Javascript Node CircleCI 2.1 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:lts
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      # Restore local dependencies from cache
+      - restore_cache:
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - v1-npm-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - v1-npm-deps-{{ .Branch }}-
+            - v1-npm-deps-
+      # Install project dependencies
+      - run:
+          name: Install local dependencies
+          command: npm install --no-save
+      # Cache local dependencies if they don't exist
+      - save_cache:
+          name: Cache dependencies
+          paths:
+            - node_modules
+          key: v1-npm-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install JUnit coverage reporter
+          command: npm install jest-junit --no-save
+      - run:
+          name: Run tests with JUnit as reporter
+          command: npm test -- --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+      - store_test_results:
+          path: reports/junit
