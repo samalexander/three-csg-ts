@@ -10,8 +10,8 @@
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint",
-    "postversion": "git push && git push --tags"
+    "release": "standard-version",
+    "prerelease": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -28,9 +28,10 @@
   },
   "homepage": "https://github.com/Hi-Level/three-csg#readme",
   "devDependencies": {
-    "@types/jest": "^24.0.13",
-    "@types/node": "^10.14.7",
+    "@types/jest": "^24.0.14",
+    "@types/node": "^10.14.9",
     "jest": "^24.8.0",
+    "standard-version": "^6.0.1",
     "three": "^0.105.2",
     "ts-jest": "^24.0.2",
     "tslint": "^5.17.0",
