@@ -18,11 +18,13 @@
     "url": "git+https://github.com/Hi-Level/three-csg.git"
   },
   "keywords": [
-    "three",
-    "CSG"
+    "threejs",
+    "three-js",
+    "csg",
+    "computational-solid-geometry"
   ],
   "author": "The Mezzanine Floor Group",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Hi-Level/three-csg/issues"
   },
