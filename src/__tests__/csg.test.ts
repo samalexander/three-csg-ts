@@ -1,5 +1,5 @@
 import { CSG } from '../index';
-import { Mesh, BoxGeometry, Vector3 } from 'three';
+import { Mesh, BoxGeometry, Vector3, Geometry } from 'three';
 
 describe('CSG instance methods', () => {
 
@@ -53,6 +53,14 @@ describe('CSG instance methods', () => {
         const meshC = CSG.toMesh(bspC, meshA.matrix);
 
         expect(meshC).toBeTruthy();
+    });
+
+    test('custom geometry', () => {
+        const box = new BoxGeometry(1, 1, 1);
+        const g = new Geometry();
+        g.vertices = box.vertices;
+        g.faces = box.faces;
+        CSG.fromGeometry(g);
     });
 
 });
