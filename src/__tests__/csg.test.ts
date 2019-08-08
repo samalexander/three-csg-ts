@@ -1,5 +1,5 @@
 import { CSG } from '../index';
-import { Mesh, BoxGeometry, Vector3, Geometry, Face3 } from 'three';
+import { Mesh, BoxGeometry, Vector3, Geometry } from 'three';
 
 describe('CSG instance methods', () => {
 
