@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/Hi-Level/three-csg/compare/v1.0.4...v1.0.5) (2019-08-08)
+
+
+### Bug Fixes
+
+* **csg:** Check faceVertexUvs exists ([#3](https://github.com/Hi-Level/three-csg/issues/3)) ([59d2dca](https://github.com/Hi-Level/three-csg/commit/59d2dca))
+* **deps:** Upgrade dependencies ([c4ea9c1](https://github.com/Hi-Level/three-csg/commit/c4ea9c1))
+
 ### [1.0.4](https://github.com/Hi-Level/three-csg/compare/v1.0.3...v1.0.4) (2019-07-16)
 
 
