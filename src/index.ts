@@ -23,8 +23,9 @@ export class CSG {
             const f = fs[i];
             const vertices = [];
             for (let j = 0; j < 3; j++) {
-                const hasFaceVertexUv = geom.faceVertexUvs[0][i] !== undefined && geom.faceVertexUvs[0][i][j] !== undefined;
-                vertices.push(new Vertex(vs[f[fm[j]]], f.vertexNormals[j], hasFaceVertexUv ? geom.faceVertexUvs[0][i][j] : undefined));
+                const uvs = geom.faceVertexUvs[0][i] !== undefined && geom.faceVertexUvs[0][i][j] !== undefined ?
+                    geom.faceVertexUvs[0][i][j] : undefined;
+                vertices.push(new Vertex(vs[f[fm[j]]], f.vertexNormals[j], uvs));
             }
 
             polys.push(new Polygon(vertices));
