@@ -23,7 +23,8 @@ export class CSG {
             const f = fs[i];
             const vertices = [];
             for (let j = 0; j < 3; j++) {
-                vertices.push(new Vertex(vs[f[fm[j]]], f.vertexNormals[j], geom.faceVertexUvs[0][i][j]));
+                const hasFaceVertexUv = geom.faceVertexUvs[0][i] !== undefined && geom.faceVertexUvs[0][i][j] !== undefined;
+                vertices.push(new Vertex(vs[f[fm[j]]], f.vertexNormals[j], hasFaceVertexUv ? geom.faceVertexUvs[0][i][j] : undefined));
             }
 
             polys.push(new Polygon(vertices));
@@ -256,14 +257,14 @@ class Vertex {
     normal: Vector;
     uv: Vector;
 
-    constructor(pos: IVector, normal: IVector, uv: IVector) {
+    constructor(pos: IVector, normal: IVector, uv?: IVector) {
         this.pos = new Vector(pos.x, pos.y, pos.z);
         this.normal = new Vector(normal.x, normal.y, normal.z);
-        this.uv = new Vector(uv.x, uv.y, uv.z);
+        if (uv) this.uv = new Vector(uv.x, uv.y, uv.z);
     }
 
     clone() {
-        return new Vertex(this.pos.clone(), this.normal.clone(), this.uv.clone());
+        return new Vertex(this.pos.clone(), this.normal.clone(), this.uv ? this.uv.clone() : undefined);
     }
 
     // Invert all orientation-specific data (e.g. vertex normal). Called when the
@@ -276,7 +277,7 @@ class Vertex {
     // interpolating all properties using a parameter of `t`. Subclasses should
     // override this to interpolate additional properties.
     interpolate(other: Vertex, t: number) {
-        return new Vertex(this.pos.lerp(other.pos, t), this.normal.lerp(other.normal, t), this.uv.lerp(other.uv, t));
+        return new Vertex(this.pos.lerp(other.pos, t), this.normal.lerp(other.normal, t), this.uv ? this.uv.lerp(other.uv, t) : undefined);
     }
 }
 
