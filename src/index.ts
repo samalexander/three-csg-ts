@@ -68,9 +68,12 @@ export class CSG {
                 fnml.push(new Vector3().copy(pvs[0].normal));
                 fnml.push(new Vector3().copy(pvs[j - 2].normal));
                 fnml.push(new Vector3().copy(pvs[j - 1].normal));
-                fuv.push(new Vector3().copy(pvs[0].uv));
-                fuv.push(new Vector3().copy(pvs[j - 2].uv));
-                fuv.push(new Vector3().copy(pvs[j - 1].uv));
+                // check for uv property
+                if (pvs[0].uv && pvs[j - 2].uv && pvs[j - 1].uv) {
+                    fuv.push(new Vector3().copy(pvs[0].uv));
+                    fuv.push(new Vector3().copy(pvs[j - 2].uv));
+                    fuv.push(new Vector3().copy(pvs[j - 1].uv));
+                }
 
                 fc.normal = new Vector3().copy(p.plane.normal);
                 geom.faces.push(fc);
