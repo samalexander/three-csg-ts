@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.6](https://github.com/Hi-Level/three-csg/compare/v1.0.5...v1.0.6) (2019-08-12)
+
+
+### Bug Fixes
+
+* **csg:** Add check for uv property in toMesh ([d491502](https://github.com/Hi-Level/three-csg/commit/d491502))
+
 ### [1.0.5](https://github.com/Hi-Level/three-csg/compare/v1.0.4...v1.0.5) (2019-08-08)
 
 
