@@ -38,14 +38,14 @@
     "@types/node": "^12.12.3",
     "jest": "^24.9.0",
     "standard-version": "^7.0.0",
-    "three": "^0.110.0",
+    "three": "^0.113.2",
     "ts-jest": "^24.1.0",
     "tslint": "^5.20.0",
     "tslint-config-standard": "^8.0.1",
     "typescript": "^3.6.4"
   },
   "peerDependencies": {
-    "three": ">= 0.104.0 < 1"
+    "three": ">= 0.113.0 < 1"
   },
   "files": [
     "lib/**/*"
