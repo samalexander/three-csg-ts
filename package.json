@@ -1,6 +1,6 @@
 {
-  "name": "@hi-level/three-csg",
-  "version": "1.0.7",
+  "name": "threecsg",
+  "version": "1.0.0",
   "description": "CSG library for use with THREE.js",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -15,10 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Hi-Level/three-csg.git"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "url": "git+https://github.com/JiroUK/ThreeCSG.git"
   },
   "keywords": [
     "three",
@@ -27,12 +24,12 @@
     "csg",
     "computational-solid-geometry"
   ],
-  "author": "The Mezzanine Floor Group",
+  "author": "Jiro",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Hi-Level/three-csg/issues"
+    "url": "https://github.com/JiroUK/ThreeCSG/issues"
   },
-  "homepage": "https://github.com/Hi-Level/three-csg#readme",
+  "homepage": "https://github.com/JiroUK/ThreeCSG#readme",
   "devDependencies": {
     "@types/jest": "^24.0.21",
     "@types/node": "^12.12.3",

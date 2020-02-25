@@ -1,8 +1,4 @@
-# Three CSG
-
-[![CircleCI](https://circleci.com/gh/Hi-Level/three-csg.svg?style=svg&circle-token=32d4dc85df58e34f69da484a464e5e07718fda5c)](https://circleci.com/gh/Hi-Level/three-csg)
-[![Maintainability](https://api.codeclimate.com/v1/badges/03518d7b40e2d73eb5bf/maintainability)](https://codeclimate.com/github/Hi-Level/three-csg/maintainability)
-
+# ThreeCSG
 CSG (Constructive Solid Geometry) library for [three.js](https://github.com/mrdoob/three.js/) with Typescript support.
 
 *This is a typescript rewrite of [THREE-CSGMesh](https://github.com/manthrax/THREE-CSGMesh).*
@@ -21,14 +17,14 @@ By using different combinations of these 3 operations, and changing the order of
 
 ## Installation
 
-* Install with npm `npm i -save @hi-level/three-csg`
-* Install with yarn `yarn add @hi-level/three-csg`
+* Install with npm `npm i -save threecsg`
+* Install with yarn `yarn add threecsg`
 
 ## Example usage
 
 ```
 import * as THREE from 'three';
-import { CSG } from '@hi-level/three-csg';
+import { CSG } from 'threecsg';
 
 // Make 2 box meshes..
 const meshA = new THREE.Mesh(new THREE.BoxGeometry(1,1,1));
