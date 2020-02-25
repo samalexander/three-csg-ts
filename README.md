@@ -17,14 +17,14 @@ By using different combinations of these 3 operations, and changing the order of
 
 ## Installation
 
-* Install with npm `npm i -save threecsg`
-* Install with yarn `yarn add threecsg`
+* Install with npm `npm i -save three-csg-ts`
+* Install with yarn `yarn add three-csg-ts`
 
 ## Example usage
 
 ```
 import * as THREE from 'three';
-import { CSG } from 'threecsg';
+import { CSG } from 'three-csg-ts';
 
 // Make 2 box meshes..
 const meshA = new THREE.Mesh(new THREE.BoxGeometry(1,1,1));
