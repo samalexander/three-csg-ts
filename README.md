@@ -1,4 +1,4 @@
-# ThreeCSG
+# three-csg-ts
 CSG (Constructive Solid Geometry) library for [three.js](https://github.com/mrdoob/three.js/) with Typescript support.
 
 *This is a typescript rewrite of [THREE-CSGMesh](https://github.com/manthrax/THREE-CSGMesh).*
