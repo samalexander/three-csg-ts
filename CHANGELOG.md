@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.2 (2020-03-31)
+
+
+### Bug Fixes
+
+* Fix deprecation introduced by threejs r113 ([#6](https://github.com/JiroUK/three-csg-ts/issues/6)) ([c77bbdf](https://github.com/JiroUK/three-csg-ts/commit/c77bbdf9930de29c4f46c7142823e1bfb43609f9))
+* Fix readme ([102aad4](https://github.com/JiroUK/three-csg-ts/commit/102aad41bfc16606b1c137d02e124565f403e429))
+* Upgrade dependencies ([c5ef698](https://github.com/JiroUK/three-csg-ts/commit/c5ef69818c8dc56798f682899a3645eac09da524))
+* **csg:** Add check for uv property in toMesh ([27d9575](https://github.com/JiroUK/three-csg-ts/commit/27d95757bd5d5e3492de83f1074ceb1d57a133e7))
+* **csg:** Check faceVertexUvs exists ([#3](https://github.com/JiroUK/three-csg-ts/issues/3)) ([057bd3f](https://github.com/JiroUK/three-csg-ts/commit/057bd3f0b7d90669afa61e07075dad3cb4093eb3))
+* **deps:** Upgrade dependencies ([473e6f4](https://github.com/JiroUK/three-csg-ts/commit/473e6f4ce06e4fd70698536551c9913ad1bdc894))
+* **deps:** Upgrade dependencies ([580b3d8](https://github.com/JiroUK/three-csg-ts/commit/580b3d839afb5a025d0b6ccf87ccff6a2c763c9b))
+* **deps:** Upgrade dependencies ([abf55fd](https://github.com/JiroUK/three-csg-ts/commit/abf55fd25513d5e6c49b90c6171e7a894b384da4))
+* **deps:** Upgrade dependencies ([baca9f7](https://github.com/JiroUK/three-csg-ts/commit/baca9f74ddcf631226f9a31f949ed6444e3934f6))
+* **deps:** Upgrade dependencies ([a6ed69e](https://github.com/JiroUK/three-csg-ts/commit/a6ed69eb43a66d3b4dee5b8c8ad18606d0313ab9))
+* **deps:** Upgrade dependencies ([5cfc090](https://github.com/JiroUK/three-csg-ts/commit/5cfc0904a2dd30310d412819e9d92f33b1d6af10))
+* **readme:** Update README ([c6329c9](https://github.com/JiroUK/three-csg-ts/commit/c6329c95998e5322b9d41fe10fe01f4bd0d88fce))
+
 ### [1.0.1](https://github.com/JiroUK/three-csg-ts/compare/v1.0.0...v1.0.1) (2020-02-25)
 
 
