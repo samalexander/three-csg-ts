@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/JiroUK/three-csg-ts/compare/v1.0.3...v1.0.4) (2020-04-14)
+
+
+### Bug Fixes
+
+* Update README ([351f54b](https://github.com/JiroUK/three-csg-ts/commit/351f54b3a389d1584ddb4a59b2afddf715d68793))
+
 ### [1.0.3](https://github.com/JiroUK/three-csg-ts/compare/v1.0.2...v1.0.3) (2020-04-07)
 
 
