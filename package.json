@@ -32,8 +32,8 @@
   "homepage": "https://github.com/JiroUK/three-csg-ts#readme",
   "devDependencies": {
     "@types/jest": "^25.2.1",
-    "@types/node": "^12.12.34",
-    "jest": "^25.2.7",
+    "@types/node": "^12.12.35",
+    "jest": "^25.3.0",
     "standard-version": "^7.1.0",
     "three": "^0.115.0",
     "ts-jest": "^25.3.1",

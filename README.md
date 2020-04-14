@@ -27,11 +27,11 @@ import * as THREE from 'three';
 import { CSG } from 'three-csg-ts';
 
 // Make 2 box meshes..
-const meshA = new THREE.Mesh(new THREE.BoxGeometry(1,1,1));
+const meshA = new THREE.Mesh(new THREE.BoxGeometry(1,1,1), new THREE.MeshBasicMaterial( { color: 0x32a852 } ));
 const meshB = new THREE.Mesh(new THREE.BoxGeometry(1,1,1));
 
 // Offset one of the boxes by half its width..
-meshB.position.add(new THREE.Vector3(0.5, 0.5, 0.5);
+meshB.position.add(new THREE.Vector3(0.5, 0.5, 0.5));
 
 // Make sure the .matrix of each mesh is current
 meshA.updateMatrix();
