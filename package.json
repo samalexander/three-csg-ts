@@ -34,7 +34,7 @@
     "@types/jest": "^25.2.1",
     "@types/node": "^12.12.35",
     "jest": "^25.3.0",
-    "standard-version": "^7.1.0",
+    "standard-version": "^8.0.1",
     "three": "^0.115.0",
     "ts-jest": "^25.3.1",
     "tslint": "^6.1.1",
