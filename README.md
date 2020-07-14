@@ -1,7 +1,8 @@
 # three-csg-ts
+
 CSG (Constructive Solid Geometry) library for [three.js](https://github.com/mrdoob/three.js/) with Typescript support.
 
-*This is a typescript rewrite of [THREE-CSGMesh](https://github.com/manthrax/THREE-CSGMesh).*
+_This is a typescript rewrite of [THREE-CSGMesh](https://github.com/manthrax/THREE-CSGMesh)._
 
 ## Concept
 
@@ -17,8 +18,8 @@ By using different combinations of these 3 operations, and changing the order of
 
 ## Installation
 
-* Install with npm `npm i -save three-csg-ts`
-* Install with yarn `yarn add three-csg-ts`
+- Install with npm `npm i -save three-csg-ts`
+- Install with yarn `yarn add three-csg-ts`
 
 ## Example usage
 
@@ -38,7 +39,7 @@ meshA.updateMatrix();
 meshB.updateMatrix();
 
 // Create a bsp tree from each of the meshes
-const bspA = CSG.fromMesh(meshA);                        
+const bspA = CSG.fromMesh(meshA);
 const bspB = CSG.fromMesh(meshB);
 
 // Subtract one bsp from the other via .subtract... other supported modes are .union and .intersect

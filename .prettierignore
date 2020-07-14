@@ -1,0 +1,6 @@
+# Ignore artifacts:
+build
+coverage
+
+# changelog is generated automatically
+CHANGELOG.md

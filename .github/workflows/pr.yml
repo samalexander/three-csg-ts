@@ -8,13 +8,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Use Node.js 10.x
+      - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
-          node-version: 10.x
-      - name: npm install and test
+          node-version: 12.x
+      - name: npm install
+        run: npm install
+        env:
+          CI: true
+      - name: lint & format
         run: |
-          npm install
-          npm run test
+          npm run lint
+          npx prettier --check .
+        env:
+          CI: true
+      - name: test
+        run: npm run test
         env:
           CI: true
