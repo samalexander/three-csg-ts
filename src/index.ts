@@ -1,4 +1,4 @@
-import { Vector3, Geometry, Matrix3, Face3, Mesh, Matrix4 } from 'three';
+import { Face3, Geometry, Matrix3, Matrix4, Mesh, Vector3 } from 'three';
 
 /**
  * Holds a binary space partition tree representing a 3D solid. Two solids can

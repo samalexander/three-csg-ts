@@ -1,5 +1,5 @@
+import { BoxGeometry, Geometry, Matrix4, Mesh, Vector3 } from 'three';
 import { CSG } from '../index';
-import { Mesh, BoxGeometry, Vector3, Geometry, Matrix4 } from 'three';
 
 describe('CSG instance methods', () => {
   test('clone', () => {
