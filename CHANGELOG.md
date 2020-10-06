@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/Jiro-Digital/three-csg-ts/compare/v1.0.4...v1.0.5) (2020-10-06)
+
+
+### Bug Fixes
+
+* add organize imports plugin ([859aaa9](https://github.com/Jiro-Digital/three-csg-ts/commit/859aaa937c0dc288ce6f940cc7dad59d84ea391e))
+* upgrade dependencies ([5e14d46](https://github.com/Jiro-Digital/three-csg-ts/commit/5e14d4627649c7ee835aee3fd767aaa828e920db))
+* Upgrade dependencies ([03d07a6](https://github.com/Jiro-Digital/three-csg-ts/commit/03d07a647cb69de53c67022f13ec50442acaf211))
+
 ### [1.0.4](https://github.com/JiroUK/three-csg-ts/compare/v1.0.3...v1.0.4) (2020-04-14)
 
 
