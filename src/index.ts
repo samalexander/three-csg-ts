@@ -209,6 +209,7 @@ class Vector extends Vector3 {
     } else if (Array.isArray(x)) {
       super(x[0], x[1], x[2]);
     } else if (typeof x === 'object') {
+      super();
       this.copy(x);
     } else {
       throw new Error('Invalid constructor to vector');
