@@ -82,7 +82,14 @@ export class CSG {
         geom.faces.push(fc);
       }
     }
-    const inv = new Matrix4().getInverse(toMatrix);
+    let inv: any;
+    // test for matrix invert method introduced in r123
+    if (typeof toMatrix['invert'] === 'function') {
+      inv = toMatrix.invert();
+    } else {
+      // enables compatibility with previous versions
+      inv = new Matrix4().getInverse(toMatrix);
+    }
     geom.applyMatrix4(inv);
     geom.verticesNeedUpdate = geom.elementsNeedUpdate = geom.normalsNeedUpdate = true;
     geom.computeBoundingSphere();
