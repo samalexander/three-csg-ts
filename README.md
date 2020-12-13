@@ -4,6 +4,8 @@ CSG (Constructive Solid Geometry) library for [three.js](https://github.com/mrdo
 
 _This is a typescript rewrite of [THREE-CSGMesh](https://github.com/manthrax/THREE-CSGMesh)._
 
+[Example](https://stackblitz.com/edit/three-csg-ts?file=index.ts)
+
 ## Concept
 
 CSG is the name of a technique for generating a new geometry as a function of two input geometries.
