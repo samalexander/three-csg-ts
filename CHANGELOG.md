@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/Jiro-Digital/three-csg-ts/compare/v1.0.6...v2.0.0) (2020-12-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* target es6
+
+### Features
+
+* target es6 ([6cea95e](https://github.com/Jiro-Digital/three-csg-ts/commit/6cea95e49dfe04c6984dcdb9ce075c84830e6453))
+
+
+### Bug Fixes
+
+* handle Matrix4 getInverse deprecation in three r123 ([d04eb4b](https://github.com/Jiro-Digital/three-csg-ts/commit/d04eb4bb2efa01a26353d50ea50a678c4f2f2feb))
+* upgrade dependencies ([b40b1a0](https://github.com/Jiro-Digital/three-csg-ts/commit/b40b1a0741bd147cf13fdb6ee1856862648d2c5c))
+
 ### [1.0.6](https://github.com/Jiro-Digital/three-csg-ts/compare/v1.0.5...v1.0.6) (2020-10-27)
 
 
