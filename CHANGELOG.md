@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/Jiro-Digital/three-csg-ts/compare/v2.0.0...v2.0.1) (2021-01-13)
+
+
+### Bug Fixes
+
+* add types for fromGeometry method ([b216185](https://github.com/Jiro-Digital/three-csg-ts/commit/b216185fe9dfb98a096b8245d780621a1b5f896e))
+* clone matrix before invert ([#14](https://github.com/Jiro-Digital/three-csg-ts/issues/14)) ([6907456](https://github.com/Jiro-Digital/three-csg-ts/commit/690745649a7e637da49035db0dd7e21c1eaea8cb))
+* upgrade dependencies ([5223398](https://github.com/Jiro-Digital/three-csg-ts/commit/52233988a46cbee38c89d027b45bd2c5f55c19df))
+* upgrade dependencies ([a4a7a2c](https://github.com/Jiro-Digital/three-csg-ts/commit/a4a7a2c1a2f998c864f6a2f35a562d4ebf280caa))
+* upgrade dependencies ([a45a222](https://github.com/Jiro-Digital/three-csg-ts/commit/a45a22252172794b052e3b79135d0496385df27b))
+* upgrade dependencies ([a821f57](https://github.com/Jiro-Digital/three-csg-ts/commit/a821f578f8ca6cf689809d404ab148e34988c944))
+
 ## [2.0.0](https://github.com/Jiro-Digital/three-csg-ts/compare/v1.0.6...v2.0.0) (2020-12-13)
 
 
