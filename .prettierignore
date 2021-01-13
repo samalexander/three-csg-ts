@@ -2,5 +2,8 @@
 build
 coverage
 
+# Compiler output
+/lib
+
 # changelog is generated automatically
 CHANGELOG.md

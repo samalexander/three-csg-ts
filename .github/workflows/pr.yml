@@ -7,22 +7,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js 12.x
+      - uses: actions/checkout@v2
+
+      - name: Cache node modules
+        id: cache-node
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
-      - name: npm install
+          node-version: 14.x
+
+      - name: Install Dependencies
+        if: steps.cache-node.outputs.cache-hit != 'true'
         run: npm install
-        env:
-          CI: true
-      - name: lint & format
+
+      - name: Lint & format
         run: |
           npm run lint
           npx prettier --check .
-        env:
-          CI: true
-      - name: test
+
+      - name: Test
         run: npm run test
-        env:
-          CI: true
