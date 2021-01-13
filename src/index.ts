@@ -1,4 +1,13 @@
-import { Face3, Geometry, Matrix3, Matrix4, Mesh, Vector3 } from 'three';
+import {
+  BufferGeometry,
+  Face3,
+  Geometry,
+  Matrix3,
+  Matrix4,
+  Mesh,
+  Vector2,
+  Vector3,
+} from 'three';
 
 /**
  * Holds a binary space partition tree representing a 3D solid. Two solids can
@@ -11,8 +20,8 @@ export class CSG {
     return csg;
   }
 
-  static fromGeometry(geom: any) {
-    if (geom.isBufferGeometry) {
+  static fromGeometry(geom: BufferGeometry | Geometry) {
+    if (geom instanceof BufferGeometry) {
       geom = new Geometry().fromBufferGeometry(geom);
     }
     const fs = geom.faces;
@@ -252,12 +261,6 @@ class Vector extends Vector3 {
   }
 }
 
-interface IVector {
-  x: number;
-  y: number;
-  z: number;
-}
-
 /**
  * Represents a vertex of a polygon. Use your own vertex class instead of this
  * one to provide additional features like texture coordinates and vertex
@@ -272,10 +275,10 @@ class Vertex {
   normal: Vector;
   uv: Vector;
 
-  constructor(pos: IVector, normal: IVector, uv?: IVector) {
+  constructor(pos: Vector3, normal: Vector3, uv?: Vector2) {
     this.pos = new Vector(pos.x, pos.y, pos.z);
     this.normal = new Vector(normal.x, normal.y, normal.z);
-    if (uv) this.uv = new Vector(uv.x, uv.y, uv.z);
+    if (uv) this.uv = new Vector(uv.x, uv.y, null);
   }
 
   clone() {
