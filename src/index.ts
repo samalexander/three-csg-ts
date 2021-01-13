@@ -85,7 +85,7 @@ export class CSG {
     let inv: any;
     // test for matrix invert method introduced in r123
     if (typeof toMatrix['invert'] === 'function') {
-      inv = toMatrix.invert();
+      inv = toMatrix.clone().invert();
     } else {
       // enables compatibility with previous versions
       inv = new Matrix4().getInverse(toMatrix);
