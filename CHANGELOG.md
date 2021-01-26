@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/Jiro-Digital/three-csg-ts/compare/v2.1.0...v2.2.0) (2021-01-26)
+
+
+### Features
+
+* support conversion to geometry ([9fb107d](https://github.com/Jiro-Digital/three-csg-ts/commit/9fb107dc73188e07e1086bd4872572731651b112))
+
 ## [2.1.0](https://github.com/Jiro-Digital/three-csg-ts/compare/v2.0.1...v2.1.0) (2021-01-26)
 
 
