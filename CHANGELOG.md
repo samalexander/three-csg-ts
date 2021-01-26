@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/Jiro-Digital/three-csg-ts/compare/v2.0.1...v2.1.0) (2021-01-26)
+
+
+### Features
+
+* Add support for multiple materials ([94cf1ba](https://github.com/Jiro-Digital/three-csg-ts/commit/94cf1bac10aa69e256fbdd9405d682433c8eacde))
+
+
+### Bug Fixes
+
+* add missing return types ([f9672a3](https://github.com/Jiro-Digital/three-csg-ts/commit/f9672a397644cdb9f355a6d2cb3410031bd0e0f2))
+* update dependencies ([d6a02b5](https://github.com/Jiro-Digital/three-csg-ts/commit/d6a02b53e96404a5e52e50b7fa39cb4e956d9e3f))
+
 ### [2.0.1](https://github.com/Jiro-Digital/three-csg-ts/compare/v2.0.0...v2.0.1) (2021-01-13)
 
 
