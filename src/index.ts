@@ -37,7 +37,9 @@ export class CSG {
           geom.faceVertexUvs[0][i][j] !== undefined
             ? geom.faceVertexUvs[0][i][j]
             : undefined;
-        vertices.push(new Vertex(vs[f[fm[j]]], f.vertexNormals[j], uvs));
+        vertices.push(
+          new Vertex(vs[f[fm[j]]], f.vertexNormals[j], f.materialIndex, uvs)
+        );
       }
 
       polys.push(new Polygon(vertices));
@@ -72,7 +74,14 @@ export class CSG {
       }
 
       for (let j = 3; j <= pvlen; j++) {
-        const fc = new Face3(v0, v0 + j - 2, v0 + j - 1);
+        const fc = new Face3(
+          v0,
+          v0 + j - 2,
+          v0 + j - 1,
+          undefined,
+          undefined,
+          pvs[0].materialIdx
+        );
         const fuv: any[] = [];
         fvuv.push(fuv);
         const fnml = fc.vertexNormals;
@@ -275,7 +284,12 @@ class Vertex {
   normal: Vector;
   uv: Vector;
 
-  constructor(pos: Vector3, normal: Vector3, uv?: Vector2) {
+  constructor(
+    pos: Vector3,
+    normal: Vector3,
+    public materialIdx: number,
+    uv?: Vector2
+  ) {
     this.pos = new Vector(pos.x, pos.y, pos.z);
     this.normal = new Vector(normal.x, normal.y, normal.z);
     if (uv) this.uv = new Vector(uv.x, uv.y, null);
@@ -285,6 +299,7 @@ class Vertex {
     return new Vertex(
       this.pos.clone(),
       this.normal.clone(),
+      this.materialIdx,
       this.uv ? this.uv.clone() : undefined
     );
   }
@@ -302,6 +317,7 @@ class Vertex {
     return new Vertex(
       this.pos.lerp(other.pos, t),
       this.normal.lerp(other.normal, t),
+      this.materialIdx,
       this.uv ? this.uv.lerp(other.uv, t) : undefined
     );
   }
