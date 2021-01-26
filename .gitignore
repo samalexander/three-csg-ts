@@ -89,3 +89,6 @@ typings/
 
 # Compiler output
 /lib
+
+# IDEs
+.vscode/*
