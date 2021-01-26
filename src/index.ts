@@ -59,7 +59,7 @@ export class CSG {
     return csg;
   }
 
-  static toMesh(csg: CSG, toMatrix: Matrix4): Mesh {
+  static toGeometry(csg: CSG, toMatrix: Matrix4): Geometry {
     const geom = new Geometry();
     const ps = csg.polygons;
     const vs = geom.vertices;
@@ -112,6 +112,11 @@ export class CSG {
     geom.verticesNeedUpdate = geom.elementsNeedUpdate = geom.normalsNeedUpdate = true;
     geom.computeBoundingSphere();
     geom.computeBoundingBox();
+    return geom;
+  }
+
+  static toMesh(csg: CSG, toMatrix: Matrix4): Mesh {
+    const geom = this.toGeometry(csg, toMatrix);
     const m = new Mesh(geom);
     m.matrix.copy(toMatrix);
     m.matrix.decompose(m.position, m.rotation as any, m.scale);
