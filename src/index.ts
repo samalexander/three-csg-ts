@@ -14,13 +14,13 @@ import {
  * be combined using the `union()`, `subtract()`, and `intersect()` methods.
  */
 export class CSG {
-  static fromPolygons(polygons: Polygon[]) {
+  static fromPolygons(polygons: Polygon[]): CSG {
     const csg = new CSG();
     csg.polygons = polygons;
     return csg;
   }
 
-  static fromGeometry(geom: BufferGeometry | Geometry) {
+  static fromGeometry(geom: BufferGeometry | Geometry): CSG {
     if (geom instanceof BufferGeometry) {
       geom = new Geometry().fromBufferGeometry(geom);
     }
@@ -45,7 +45,7 @@ export class CSG {
     return CSG.fromPolygons(polys);
   }
 
-  static fromMesh(mesh: Mesh) {
+  static fromMesh(mesh: Mesh): CSG {
     const csg = CSG.fromGeometry(mesh.geometry);
     CSG._tmpm3.getNormalMatrix(mesh.matrix);
     for (const p of csg.polygons) {
@@ -57,7 +57,7 @@ export class CSG {
     return csg;
   }
 
-  static toMesh(csg: CSG, toMatrix: Matrix4) {
+  static toMesh(csg: CSG, toMatrix: Matrix4): Mesh {
     const geom = new Geometry();
     const ps = csg.polygons;
     const vs = geom.vertices;
@@ -110,7 +110,7 @@ export class CSG {
     return m;
   }
 
-  static iEval(tokens: Mesh) {
+  static iEval(tokens: Mesh): void {
     if (typeof tokens === 'string') {
       CSG.currentOp = tokens;
     } else if (tokens instanceof Array) {
@@ -131,7 +131,7 @@ export class CSG {
     } // union,subtract,intersect,inverse
   }
 
-  static eval(tokens: Mesh, doRemove: boolean) {
+  static eval(tokens: Mesh, doRemove: boolean): Mesh {
     // [['add',mesh,mesh,mesh,mesh],['sub',mesh,mesh,mesh,mesh]]
     CSG.currentOp = null;
     CSG.sourceMesh = null;
@@ -155,7 +155,7 @@ export class CSG {
     this.polygons = [];
   }
 
-  clone() {
+  clone(): CSG {
     const csg = new CSG();
     csg.polygons = this.polygons.map((p) => {
       return p.clone();
@@ -163,11 +163,11 @@ export class CSG {
     return csg;
   }
 
-  toPolygons() {
+  toPolygons(): Polygon[] {
     return this.polygons;
   }
 
-  union(csg: CSG) {
+  union(csg: CSG): CSG {
     const a = new Node(this.clone().polygons);
     const b = new Node(csg.clone().polygons);
     a.clipTo(b);
@@ -179,7 +179,7 @@ export class CSG {
     return CSG.fromPolygons(a.allPolygons());
   }
 
-  subtract(csg: CSG) {
+  subtract(csg: CSG): CSG {
     const a = new Node(this.clone().polygons);
     const b = new Node(csg.clone().polygons);
     a.invert();
@@ -193,7 +193,7 @@ export class CSG {
     return CSG.fromPolygons(a.allPolygons());
   }
 
-  intersect(csg: CSG) {
+  intersect(csg: CSG): CSG {
     const a = new Node(this.clone().polygons);
     const b = new Node(csg.clone().polygons);
     a.invert();
@@ -206,7 +206,7 @@ export class CSG {
     return CSG.fromPolygons(a.allPolygons());
   }
 
-  inverse() {
+  inverse(): CSG {
     const csg = this.clone();
     csg.polygons.map((p) => {
       p.flip();
@@ -256,7 +256,7 @@ class Vector extends Vector3 {
   unit(): Vector {
     return this.dividedBy(this.length());
   }
-  cross(a: Vector) {
+  cross(a: Vector): any {
     return Vector3.prototype.cross.call(this.clone(), a);
   }
 }
@@ -281,7 +281,7 @@ class Vertex {
     if (uv) this.uv = new Vector(uv.x, uv.y, null);
   }
 
-  clone() {
+  clone(): Vertex {
     return new Vertex(
       this.pos.clone(),
       this.normal.clone(),
@@ -291,14 +291,14 @@ class Vertex {
 
   // Invert all orientation-specific data (e.g. vertex normal). Called when the
   // orientation of a polygon is flipped.
-  flip() {
+  flip(): void {
     this.normal = this.normal.negated();
   }
 
   // Create a new vertex between this vertex and `other` by linearly
   // interpolating all properties using a parameter of `t`. Subclasses should
   // override this to interpolate additional properties.
-  interpolate(other: Vertex, t: number) {
+  interpolate(other: Vertex, t: number): Vertex {
     return new Vertex(
       this.pos.lerp(other.pos, t),
       this.normal.lerp(other.normal, t),
@@ -311,7 +311,7 @@ class Vertex {
  * Represents a plane in 3D space.
  */
 class Plane {
-  static fromPoints(a: Vector, b: Vector, c: Vector) {
+  static fromPoints(a: Vector, b: Vector, c: Vector): Plane {
     const n = b.minus(a).cross(c.minus(a)).unit();
     return new Plane(n, n.dot(a));
   }
@@ -327,11 +327,11 @@ class Plane {
     this.w = w;
   }
 
-  clone() {
+  clone(): Plane {
     return new Plane(this.normal.clone(), this.w);
   }
 
-  flip() {
+  flip(): void {
     this.normal = this.normal.negated();
     this.w = -this.w;
   }
@@ -347,7 +347,7 @@ class Plane {
     coplanarBack: Polygon[],
     front: Polygon[],
     back: Polygon[]
-  ) {
+  ): void {
     const COPLANAR = 0;
     const FRONT = 1;
     const BACK = 2;
@@ -440,13 +440,14 @@ class Polygon {
     );
   }
 
-  clone() {
+  clone(): Polygon {
     const vertices = this.vertices.map((v) => {
       return v.clone();
     });
     return new Polygon(vertices, this.shared);
   }
-  flip() {
+
+  flip(): void {
     this.vertices.reverse().map((v) => {
       v.flip();
     });
@@ -476,7 +477,8 @@ class Node {
       this.build(polygons);
     }
   }
-  clone() {
+
+  clone(): Node {
     const node = new Node();
     node.plane = this.plane && this.plane.clone();
     node.front = this.front && this.front.clone();
@@ -488,7 +490,7 @@ class Node {
   }
 
   // Convert solid space to empty space and empty space to solid space.
-  invert() {
+  invert(): void {
     for (const polygon of this.polygons) {
       polygon.flip();
     }
@@ -507,7 +509,7 @@ class Node {
 
   // Recursively remove all polygons in `polygons` that are inside this BSP
   // tree.
-  clipPolygons(polygons: Polygon[]) {
+  clipPolygons(polygons: Polygon[]): Polygon[] {
     if (!this.plane) {
       return polygons.slice();
     }
@@ -525,7 +527,7 @@ class Node {
 
   // Remove all polygons in this BSP tree that are inside the other BSP tree
   // `bsp`.
-  clipTo(bsp: Node) {
+  clipTo(bsp: Node): void {
     this.polygons = bsp.clipPolygons(this.polygons);
     if (this.front) {
       this.front.clipTo(bsp);
@@ -536,7 +538,7 @@ class Node {
   }
 
   // Return a list of all polygons in this BSP tree.
-  allPolygons() {
+  allPolygons(): Polygon[] {
     let polygons = this.polygons.slice();
     if (this.front) {
       polygons = polygons.concat(this.front.allPolygons());
@@ -551,7 +553,7 @@ class Node {
   // new polygons are filtered down to the bottom of the tree and become new
   // nodes there. Each set of polygons is partitioned using the first polygon
   // (no heuristic is used to pick a good split).
-  build(polygons: Polygon[]) {
+  build(polygons: Polygon[]): void {
     if (!polygons.length) {
       return;
     }
