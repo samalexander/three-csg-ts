@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.0.1...v3.1.0) (2021-05-14)
+
+
+### Features
+
+* add static CSG wrapper methods ([860143c](https://github.com/Jiro-Digital/three-csg-ts/commit/860143c43c1215421ca1a69b932f96a2fa95371e))
+
 ### [3.0.1](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.0.0...v3.0.1) (2021-05-14)
 
 
