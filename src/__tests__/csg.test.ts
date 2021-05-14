@@ -1,4 +1,4 @@
-import { BoxGeometry, Geometry, Matrix4, Mesh, Vector3 } from 'three';
+import { BoxGeometry, BufferGeometry, Matrix4, Mesh, Vector3 } from 'three';
 import { CSG } from '../index';
 
 describe('CSG instance methods', () => {
@@ -56,9 +56,7 @@ describe('CSG instance methods', () => {
 
   test('custom geometry', () => {
     const box = new BoxGeometry(1, 1, 1);
-    const g = new Geometry();
-    g.vertices = box.vertices;
-    g.faces = box.faces;
+    const g = new BufferGeometry().copy(box);
     const csg = CSG.fromGeometry(g);
 
     const result = CSG.toMesh(csg, new Matrix4());
