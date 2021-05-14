@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "ES2015",
+    "module": "ES2020",
     "moduleResolution": "node",
     "declaration": true,
-    "outDir": "./lib",
-    // "strict": true,
+    "outDir": "./lib/esm",
     "typeRoots": ["node_modules/@types"],
     "esModuleInterop": true
   },
