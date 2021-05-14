@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.1](https://github.com/Jiro-Digital/three-csg-ts/compare/v2.3.0...v2.3.1) (2021-05-14)
+
+
+### Bug Fixes
+
+* add dev test setup ([f1ad8b5](https://github.com/Jiro-Digital/three-csg-ts/commit/f1ad8b5274066d2b6b8480f866ee3f17ba3f64f6))
+
 ## [2.3.0](https://github.com/Jiro-Digital/three-csg-ts/compare/v2.2.2...v2.3.0) (2021-05-14)
 
 
