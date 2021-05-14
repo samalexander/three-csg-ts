@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.0.0...v3.0.1) (2021-05-14)
+
+
+### Bug Fixes
+
+* re-add CSG toGeometry method ([0d82369](https://github.com/Jiro-Digital/three-csg-ts/commit/0d82369d2b3b8d18b9a987ee8b2a06a11f678c61))
+
 ## [3.0.0](https://github.com/Jiro-Digital/three-csg-ts/compare/v2.3.0...v3.0.0) (2021-05-14)
 
 
