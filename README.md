@@ -40,16 +40,6 @@ meshB.position.add(new THREE.Vector3(0.5, 0.5, 0.5));
 meshA.updateMatrix();
 meshB.updateMatrix();
 
-// Create a bsp tree from each of the meshes
-const bspA = CSG.fromMesh(meshA);
-const bspB = CSG.fromMesh(meshB);
-
-// Subtract one bsp from the other via .subtract... other supported modes are .union and .intersect
-const bspResult = bspA.subtract(bspB);
-
-// Get the resulting mesh from the result bsp
-const meshResult = CSG.toMesh(bspResult, meshA.matrix);
-
-// Set the results material to the material of the first cube.
-meshResult.material = meshA.material;
+// Subtract meshB from meshA
+const meshResult = CSG.subtract(meshA, meshB);
 ```

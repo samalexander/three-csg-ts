@@ -174,6 +174,24 @@ export class CSG {
     return m;
   }
 
+  static union(meshA: Mesh, meshB: Mesh): Mesh {
+    const csgA = CSG.fromMesh(meshA);
+    const csgB = CSG.fromMesh(meshB);
+    return CSG.toMesh(csgA.union(csgB), meshA.matrix, meshA.material);
+  }
+
+  static subtract(meshA: Mesh, meshB: Mesh): Mesh {
+    const csgA = CSG.fromMesh(meshA);
+    const csgB = CSG.fromMesh(meshB);
+    return CSG.toMesh(csgA.subtract(csgB), meshA.matrix, meshA.material);
+  }
+
+  static intersect(meshA: Mesh, meshB: Mesh): Mesh {
+    const csgA = CSG.fromMesh(meshA);
+    const csgB = CSG.fromMesh(meshB);
+    return CSG.toMesh(csgA.intersect(csgB), meshA.matrix, meshA.material);
+  }
+
   private polygons = new Array<Polygon>();
 
   clone(): CSG {
@@ -231,7 +249,17 @@ export class CSG {
   // not modified.
   inverse(): CSG {
     const csg = this.clone();
-    csg.polygons.forEach((p) => p.flip());
+    for (const p of csg.polygons) {
+      p.flip();
+    }
     return csg;
+  }
+
+  toMesh(toMatrix: Matrix4, toMaterial?: Material | Material[]): Mesh {
+    return CSG.toMesh(this, toMatrix, toMaterial);
+  }
+
+  toGeometry(toMatrix: Matrix4): BufferGeometry {
+    return CSG.toGeometry(this, toMatrix);
   }
 }
