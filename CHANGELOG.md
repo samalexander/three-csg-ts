@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.1](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.0...v3.1.1) (2021-05-14)
+
+
+### Bug Fixes
+
+* re-add types field in package.json ([93cb572](https://github.com/Jiro-Digital/three-csg-ts/commit/93cb5725bfb98cf4b451bf8cd0a7c8a8279d475f))
+
 ## [3.1.0](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.0.1...v3.1.0) (2021-05-14)
 
 
