@@ -4,6 +4,7 @@
   "description": "CSG library for use with THREE.js",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
+  "types": "lib/esm/index.d.ts",
   "scripts": {
     "start": "webpack-dev-server --open --config example/webpack.config.js",
     "test": "jest --config jestconfig.json",
