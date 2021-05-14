@@ -76,27 +76,7 @@ export class CSG {
     return CSG.fromPolygons(polys);
   }
 
-  static fromMesh(mesh: Mesh, objectIndex?: any): CSG {
-    const csg = CSG.fromGeometry(mesh.geometry, objectIndex);
-    const ttvv0 = new Vector3();
-    const tmpm3 = new Matrix3();
-    tmpm3.getNormalMatrix(mesh.matrix);
-    for (let i = 0; i < csg.polygons.length; i++) {
-      const p = csg.polygons[i];
-      for (let j = 0; j < p.vertices.length; j++) {
-        const v = p.vertices[j];
-        v.pos.copy(ttvv0.copy(v.pos.toVector3()).applyMatrix4(mesh.matrix));
-        v.normal.copy(ttvv0.copy(v.normal.toVector3()).applyMatrix3(tmpm3));
-      }
-    }
-    return csg;
-  }
-
-  static toMesh(
-    csg: CSG,
-    toMatrix: Matrix4,
-    toMaterial?: Material | Material[]
-  ): Mesh {
+  static toGeometry(csg: CSG, toMatrix: Matrix4): BufferGeometry {
     let triCount = 0;
     const ps = csg.polygons;
     for (const p of ps) {
@@ -159,6 +139,32 @@ export class CSG {
     geom.applyMatrix4(inv);
     geom.computeBoundingSphere();
     geom.computeBoundingBox();
+
+    return geom;
+  }
+
+  static fromMesh(mesh: Mesh, objectIndex?: any): CSG {
+    const csg = CSG.fromGeometry(mesh.geometry, objectIndex);
+    const ttvv0 = new Vector3();
+    const tmpm3 = new Matrix3();
+    tmpm3.getNormalMatrix(mesh.matrix);
+    for (let i = 0; i < csg.polygons.length; i++) {
+      const p = csg.polygons[i];
+      for (let j = 0; j < p.vertices.length; j++) {
+        const v = p.vertices[j];
+        v.pos.copy(ttvv0.copy(v.pos.toVector3()).applyMatrix4(mesh.matrix));
+        v.normal.copy(ttvv0.copy(v.normal.toVector3()).applyMatrix3(tmpm3));
+      }
+    }
+    return csg;
+  }
+
+  static toMesh(
+    csg: CSG,
+    toMatrix: Matrix4,
+    toMaterial?: Material | Material[]
+  ): Mesh {
+    const geom = CSG.toGeometry(csg, toMatrix);
     const m = new Mesh(geom, toMaterial);
     m.matrix.copy(toMatrix);
     m.matrix.decompose(m.position, m.quaternion, m.scale);
