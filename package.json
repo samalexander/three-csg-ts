@@ -1,6 +1,6 @@
 {
   "name": "three-csg-ts",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "description": "CSG library for use with THREE.js",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/Jiro-Digital/three-csg-ts/compare/v2.2.2...v2.3.0) (2021-05-14)
+
+
+### Features
+
+* add esm build ([7f797a3](https://github.com/Jiro-Digital/three-csg-ts/commit/7f797a30adf2a20c27b6997ada558e19bc5752ce))
+
+
+### Bug Fixes
+
+* upgrade dependencies ([6d1bf6e](https://github.com/Jiro-Digital/three-csg-ts/commit/6d1bf6efba9537de4ec33b02117981d3c4d70672))
+
 ### [2.2.2](https://github.com/Jiro-Digital/three-csg-ts/compare/v2.2.1...v2.2.2) (2021-02-04)
 
 
