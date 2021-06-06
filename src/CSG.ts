@@ -30,6 +30,7 @@ export class CSG {
     const normalattr = geom.attributes.normal;
     const uvattr = geom.attributes.uv;
     const colorattr = geom.attributes.color;
+    const grps = geom.groups;
     let index;
 
     if (geom.index) {
@@ -70,7 +71,15 @@ export class CSG {
         );
       }
 
-      polys[pli] = new Polygon(vertices, objectIndex);
+      if (objectIndex === undefined) {
+        for (const grp of grps) {
+          if (index[i] >= grp.start && index[i] < grp.start + grp.count) {
+            polys[pli] = new Polygon(vertices, grp.materialIndex);
+          }
+        }
+      } else {
+        polys[pli] = new Polygon(vertices, objectIndex);
+      }
     }
 
     return CSG.fromPolygons(polys);
@@ -125,6 +134,11 @@ export class CSG {
     geom.setAttribute('normal', new BufferAttribute(normals.array, 3));
     geom.setAttribute('uv', new BufferAttribute(uvs.array, 2));
     colors && geom.setAttribute('color', new BufferAttribute(colors.array, 3));
+    for (let gi = 0; gi < grps.length; gi++) {
+      if (grps[gi] === undefined) {
+        grps[gi] = [];
+      }
+    }
     if (grps.length) {
       let index = [];
       let gbase = 0;
