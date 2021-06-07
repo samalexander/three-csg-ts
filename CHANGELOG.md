@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.3](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.2...v3.1.3) (2021-06-07)
+
+
+### Bug Fixes
+
+* Fix polygons creation for geometries without groups ([#29](https://github.com/Jiro-Digital/three-csg-ts/issues/29)) ([bc792e3](https://github.com/Jiro-Digital/three-csg-ts/commit/bc792e3711c32d2b24dda34874469c3d5e1d9ebf))
+
 ### [3.1.2](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.1...v3.1.2) (2021-06-06)
 
 
