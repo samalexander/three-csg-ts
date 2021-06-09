@@ -6,12 +6,12 @@
   "module": "lib/esm/index.js",
   "types": "lib/esm/index.d.ts",
   "scripts": {
-    "start": "webpack-dev-server --open --config example/webpack.config.js",
+    "start": "webpack serve --open --config example/webpack.config.js",
     "test": "jest --config jestconfig.json",
     "clean": "rimraf lib",
     "build": "npm run clean && mkdir lib && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "lint": "eslint .",
-    "prepare": "npm run build",
+    "prepare": "npm run build && husky install",
     "prepublishOnly": "npm test && npm run lint",
     "release": "standard-version",
     "prerelease": "npm run lint"
@@ -40,35 +40,30 @@
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "eslint": "^7.26.0",
-    "eslint-config-prettier": "^7.2.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^24.3.6",
-    "husky": "^4.3.8",
-    "jest": "^26.6.3",
-    "lint-staged": "^10.5.4",
+    "husky": "^6.0.0",
+    "jest": "^27.0.4",
+    "lint-staged": "^11.0.0",
     "prettier": "^2.3.0",
     "prettier-plugin-organize-imports": "^2.0.0",
     "rimraf": "^3.0.2",
     "standard-version": "^9.3.0",
     "three": "^0.129.0",
-    "ts-jest": "^26.5.6",
-    "ts-loader": "^8.2.0",
+    "ts-jest": "^27.0.3",
+    "ts-loader": "^9.2.3",
     "typescript": "^4.2.4",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
   },
   "peerDependencies": {
-    "three": ">= 0.125.0",
-    "@types/three": ">= 0.125.0"
+    "@types/three": ">= 0.125.0",
+    "three": ">= 0.125.0"
   },
   "files": [
     "lib/**/*"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*/**": [
       "eslint --fix",
