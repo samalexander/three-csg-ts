@@ -81,8 +81,7 @@ export class CSG {
         polys[pli] = new Polygon(vertices, objectIndex);
       }
     }
-
-    return CSG.fromPolygons(polys);
+    return CSG.fromPolygons(polys.filter((p) => !isNaN(p.plane.normal.x)));
   }
 
   static toGeometry(csg: CSG, toMatrix: Matrix4): BufferGeometry {
