@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.4](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.3...v3.1.4) (2021-06-22)
+
+
+### Bug Fixes
+
+* Filter out polys with NaN normals indicating degenerate polygons ([#30](https://github.com/Jiro-Digital/three-csg-ts/issues/30)) ([b835954](https://github.com/Jiro-Digital/three-csg-ts/commit/b835954964e6154b4ddb748b159b7116db0159fc))
+* upgrade dependencies ([dfe9746](https://github.com/Jiro-Digital/three-csg-ts/commit/dfe9746917c6d79472e4188b712eedefa438b4b9))
+* upgrade dependencies ([91f6da7](https://github.com/Jiro-Digital/three-csg-ts/commit/91f6da70c3bcddde44db4e10cebc763a7446d194))
+
 ### [3.1.3](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.2...v3.1.3) (2021-06-07)
 
 
