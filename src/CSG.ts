@@ -119,9 +119,12 @@ export class CSG {
         normals.write(pvs[0].normal);
         normals.write(pvs[j - 2].normal);
         normals.write(pvs[j - 1].normal);
-        uvs.write(pvs[0].uv);
-        uvs.write(pvs[j - 2].uv);
-        uvs.write(pvs[j - 1].uv);
+        if (uvs) {
+          uvs.write(pvs[0].uv);
+          uvs.write(pvs[j - 2].uv);
+          uvs.write(pvs[j - 1].uv);
+        }
+
         if (colors) {
           colors.write(pvs[0].color);
           colors.write(pvs[j - 2].color);
@@ -131,7 +134,7 @@ export class CSG {
     }
     geom.setAttribute('position', new BufferAttribute(vertices.array, 3));
     geom.setAttribute('normal', new BufferAttribute(normals.array, 3));
-    geom.setAttribute('uv', new BufferAttribute(uvs.array, 2));
+    uvs && geom.setAttribute('uv', new BufferAttribute(uvs.array, 2));
     colors && geom.setAttribute('color', new BufferAttribute(colors.array, 3));
     for (let gi = 0; gi < grps.length; gi++) {
       if (grps[gi] === undefined) {
