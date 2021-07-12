@@ -119,12 +119,12 @@ export class CSG {
         normals.write(pvs[0].normal);
         normals.write(pvs[j - 2].normal);
         normals.write(pvs[j - 1].normal);
-        if(uvs){
+        if (uvs) {
           uvs.write(pvs[0].uv);
           uvs.write(pvs[j - 2].uv);
           uvs.write(pvs[j - 1].uv);
         }
-        
+
         if (colors) {
           colors.write(pvs[0].color);
           colors.write(pvs[j - 2].color);
