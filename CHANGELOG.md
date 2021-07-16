@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.6](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.5...v3.1.6) (2021-07-16)
+
+
+### Bug Fixes
+
+* fallback to polygon with no objectIndex ([#35](https://github.com/Jiro-Digital/three-csg-ts/issues/35)) ([6baf82f](https://github.com/Jiro-Digital/three-csg-ts/commit/6baf82ff3dab74f8a9b4fd29b3fe5aa30bd45773))
+* guard against uvattr being undefined ([#36](https://github.com/Jiro-Digital/three-csg-ts/issues/36)) ([7224bdb](https://github.com/Jiro-Digital/three-csg-ts/commit/7224bdbcd44dedc41b87f9946063af6d8c9cf75d))
+* upgrade dependencies ([8bdba75](https://github.com/Jiro-Digital/three-csg-ts/commit/8bdba75057a441409c30331f05d3605393c3872c))
+
 ### [3.1.5](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.4...v3.1.5) (2021-07-12)
 
 
