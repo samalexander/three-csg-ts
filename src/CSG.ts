@@ -55,8 +55,8 @@ export class CSG {
         const nx = normalattr.array[vp];
         const ny = normalattr.array[vp + 1];
         const nz = normalattr.array[vp + 2];
-        const u = uvattr.array[vt];
-        const v = uvattr.array[vt + 1];
+        const u = uvattr?.array[vt];
+        const v = uvattr?.array[vt + 1];
 
         vertices[j] = new Vertex(
           new Vector(x, y, z),
