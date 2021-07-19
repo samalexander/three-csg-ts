@@ -31,17 +31,17 @@ By using different combinations of these 3 operations, and changing the order of
 import * as THREE from 'three';
 import { CSG } from 'three-csg-ts';
 
-// Make 2 box meshes..
-const meshA = new THREE.Mesh(new THREE.BoxGeometry(1,1,1), new THREE.MeshNormalMaterial());
-const meshB = new THREE.Mesh(new THREE.BoxGeometry(1,1,1));
-
-// Offset one of the boxes by half its width..
-meshB.position.add(new THREE.Vector3(0.5, 0.5, 0.5));
+// Make 2 meshes..
+const box = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), new THREE.MeshNormalMaterial());
+const sphere = new THREE.Mesh(new THREE.SphereGeometry(1.2, 8, 8));
 
 // Make sure the .matrix of each mesh is current
-meshA.updateMatrix();
-meshB.updateMatrix();
+box.updateMatrix();
+sphere.updateMatrix();
 
-// Subtract meshB from meshA
-const meshResult = CSG.subtract(meshA, meshB);
+// Perform CSG operations
+// The result is a THREE.Mesh that you can add to your scene...
+const subRes = CSG.subtract(box, sphere);
+const uniRes = CSG.union(box, sphere);
+const intRes = CSG.intersect(box, sphere);
 ```
