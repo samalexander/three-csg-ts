@@ -6,7 +6,7 @@ _This is a typescript rewrite of [THREE-CSGMesh](https://github.com/manthrax/THR
 
 [Example](https://stackblitz.com/edit/three-csg-ts?file=index.ts)
 
-![Screenshot 2021-07-19 at 12 31 55](https://user-images.githubusercontent.com/935782/126153853-fda9bd2b-6dc6-40a0-a8f1-0d92af997727.png)
+![Screenshot 2021-07-19 at 17 32 20](https://user-images.githubusercontent.com/935782/126194933-45ac18d0-2459-4213-97d2-d46ffb67483c.png)
 
 ## Concept
 
