@@ -1,54 +1,76 @@
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { CSG } from '../src';
 
 let camera: THREE.PerspectiveCamera,
   scene: THREE.Scene,
   renderer: THREE.WebGLRenderer,
-  mesh: THREE.Mesh;
+  results = new Array<THREE.Mesh>();
+const box = new THREE.Mesh(
+    new THREE.BoxGeometry(2, 2, 2),
+    new THREE.MeshNormalMaterial()
+  ),
+  sphere = new THREE.Mesh(
+    new THREE.SphereGeometry(1.2, 8, 8),
+    new THREE.MeshNormalMaterial()
+  );
 
 init();
 animate();
 
 function init() {
-  camera = new THREE.PerspectiveCamera(
-    70,
-    window.innerWidth / window.innerHeight,
-    0.01,
-    10
-  );
-  camera.position.z = 1;
-
-  scene = new THREE.Scene();
-
-  // Make 2 box meshes..
-  const meshA = new THREE.Mesh(
-    new THREE.BoxGeometry(0.2, 0.2, 0.2),
-    new THREE.MeshNormalMaterial()
-  );
-  const meshB = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.2));
-
-  // Offset one of the boxes by half its width..
-  meshB.position.add(new THREE.Vector3(0.1, 0.1, 0.1));
-
-  // Make sure the .matrix of each mesh is current
-  meshA.updateMatrix();
-  meshB.updateMatrix();
-
-  // Subtract meshB from meshA
-  mesh = CSG.subtract(meshA, meshB);
-
-  scene.add(mesh);
-
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
+
+  scene = new THREE.Scene();
+
+  camera = new THREE.PerspectiveCamera(
+    45,
+    window.innerWidth / window.innerHeight,
+    1,
+    10000
+  );
+  const controls = new OrbitControls(camera, renderer.domElement);
+  camera.position.set(0, 20, 10);
+  controls.update();
+}
+
+function recompute() {
+  for (const result of results) {
+    result.parent.remove(result);
+    result.geometry.dispose();
+  }
+  results = [];
+
+  box.updateMatrix();
+  sphere.updateMatrix();
+
+  // ops with box as base mesh
+  results.push(CSG.subtract(box, sphere));
+  results.push(CSG.union(box, sphere));
+  results.push(CSG.intersect(box, sphere));
+  // ops with sphere as base mesh
+  results.push(CSG.subtract(sphere, box));
+  results.push(CSG.union(sphere, box));
+  results.push(CSG.intersect(sphere, box));
+
+  for (let i = 0; i < results.length; i++) {
+    const result = results[i];
+    scene.add(result);
+
+    result.position.z += -5 + (i % 3) * 5;
+    result.position.x += -5 + ((i / 3) | 0) * 10;
+  }
 }
 
 function animate() {
   requestAnimationFrame(animate);
 
-  mesh.rotation.x += 0.01;
-  mesh.rotation.y += 0.01;
+  const time = performance.now();
+  sphere.position.x = Math.sin(time * 0.001) * 2;
+  sphere.position.z = Math.cos(time * 0.0011) * 0.5;
+  recompute();
 
   renderer.render(scene, camera);
 }
