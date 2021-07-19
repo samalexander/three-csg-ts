@@ -30,6 +30,7 @@ export class CSG {
     const normalattr = geom.attributes.normal;
     const uvattr = geom.attributes.uv;
     const colorattr = geom.attributes.color;
+    const grps = geom.groups;
     let index;
 
     if (geom.index) {
@@ -54,8 +55,8 @@ export class CSG {
         const nx = normalattr.array[vp];
         const ny = normalattr.array[vp + 1];
         const nz = normalattr.array[vp + 2];
-        const u = uvattr.array[vt];
-        const v = uvattr.array[vt + 1];
+        const u = uvattr?.array[vt];
+        const v = uvattr?.array[vt + 1];
 
         vertices[j] = new Vertex(
           new Vector(x, y, z),
@@ -70,10 +71,19 @@ export class CSG {
         );
       }
 
-      polys[pli] = new Polygon(vertices, objectIndex);
+      if (objectIndex === undefined && grps && grps.length > 0) {
+        for (const grp of grps) {
+          if (index[i] >= grp.start && index[i] < grp.start + grp.count) {
+            polys[pli] = new Polygon(vertices, grp.materialIndex);
+          } else {
+            polys[pli] = new Polygon(vertices, undefined);
+          }
+        }
+      } else {
+        polys[pli] = new Polygon(vertices, objectIndex);
+      }
     }
-
-    return CSG.fromPolygons(polys);
+    return CSG.fromPolygons(polys.filter((p) => !isNaN(p.plane.normal.x)));
   }
 
   static toGeometry(csg: CSG, toMatrix: Matrix4): BufferGeometry {
@@ -111,9 +121,12 @@ export class CSG {
         normals.write(pvs[0].normal);
         normals.write(pvs[j - 2].normal);
         normals.write(pvs[j - 1].normal);
-        uvs.write(pvs[0].uv);
-        uvs.write(pvs[j - 2].uv);
-        uvs.write(pvs[j - 1].uv);
+        if (uvs) {
+          uvs.write(pvs[0].uv);
+          uvs.write(pvs[j - 2].uv);
+          uvs.write(pvs[j - 1].uv);
+        }
+
         if (colors) {
           colors.write(pvs[0].color);
           colors.write(pvs[j - 2].color);
@@ -123,8 +136,13 @@ export class CSG {
     }
     geom.setAttribute('position', new BufferAttribute(vertices.array, 3));
     geom.setAttribute('normal', new BufferAttribute(normals.array, 3));
-    geom.setAttribute('uv', new BufferAttribute(uvs.array, 2));
+    uvs && geom.setAttribute('uv', new BufferAttribute(uvs.array, 2));
     colors && geom.setAttribute('color', new BufferAttribute(colors.array, 3));
+    for (let gi = 0; gi < grps.length; gi++) {
+      if (grps[gi] === undefined) {
+        grps[gi] = [];
+      }
+    }
     if (grps.length) {
       let index = [];
       let gbase = 0;

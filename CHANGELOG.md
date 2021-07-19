@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.6](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.5...v3.1.6) (2021-07-16)
+
+
+### Bug Fixes
+
+* fallback to polygon with no objectIndex ([#35](https://github.com/Jiro-Digital/three-csg-ts/issues/35)) ([6baf82f](https://github.com/Jiro-Digital/three-csg-ts/commit/6baf82ff3dab74f8a9b4fd29b3fe5aa30bd45773))
+* guard against uvattr being undefined ([#36](https://github.com/Jiro-Digital/three-csg-ts/issues/36)) ([7224bdb](https://github.com/Jiro-Digital/three-csg-ts/commit/7224bdbcd44dedc41b87f9946063af6d8c9cf75d))
+* upgrade dependencies ([8bdba75](https://github.com/Jiro-Digital/three-csg-ts/commit/8bdba75057a441409c30331f05d3605393c3872c))
+
+### [3.1.5](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.4...v3.1.5) (2021-07-12)
+
+
+### Bug Fixes
+
+* Add checks for missing UVs. ([#34](https://github.com/Jiro-Digital/three-csg-ts/issues/34)) ([026d5b6](https://github.com/Jiro-Digital/three-csg-ts/commit/026d5b6878f067bd7e30dcca2dc6e1c78056e1b5))
+* upgrade dependencies ([7d05397](https://github.com/Jiro-Digital/three-csg-ts/commit/7d05397bf244fed56c05b2831c1f8eb7d81427bf))
+
+### [3.1.4](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.3...v3.1.4) (2021-06-22)
+
+
+### Bug Fixes
+
+* Filter out polys with NaN normals indicating degenerate polygons ([#30](https://github.com/Jiro-Digital/three-csg-ts/issues/30)) ([b835954](https://github.com/Jiro-Digital/three-csg-ts/commit/b835954964e6154b4ddb748b159b7116db0159fc))
+* upgrade dependencies ([dfe9746](https://github.com/Jiro-Digital/three-csg-ts/commit/dfe9746917c6d79472e4188b712eedefa438b4b9))
+* upgrade dependencies ([91f6da7](https://github.com/Jiro-Digital/three-csg-ts/commit/91f6da70c3bcddde44db4e10cebc763a7446d194))
+
+### [3.1.3](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.2...v3.1.3) (2021-06-07)
+
+
+### Bug Fixes
+
+* Fix polygons creation for geometries without groups ([#29](https://github.com/Jiro-Digital/three-csg-ts/issues/29)) ([bc792e3](https://github.com/Jiro-Digital/three-csg-ts/commit/bc792e3711c32d2b24dda34874469c3d5e1d9ebf))
+
+### [3.1.2](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.1...v3.1.2) (2021-06-06)
+
+
+### Bug Fixes
+
+* upgrade dependencies ([b505442](https://github.com/Jiro-Digital/three-csg-ts/commit/b505442648ba4db83f7a217a131cf0b83d8c4730))
+
 ### [3.1.1](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.0...v3.1.1) (2021-05-14)
 
 
