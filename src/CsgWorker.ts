@@ -8,35 +8,32 @@ export interface Task {
 }
 
 export class CsgWorker {
-  private static taskId = 0;
-  private static workerTasks = new Array<Task>();
-  private static worker: Worker;
+  private taskId = 0;
+  private workerTasks = new Array<Task>();
+  private worker: Worker;
+  private isBusy = false;
 
-  private static getWorker(): Worker {
+  constructor() {
     if (!window.Worker) {
       throw new Error('This browser does not support web workers');
     }
-    if (!this.worker) {
-      this.worker = new Worker('./worker.js');
-      this.worker.onmessage = (e) => {
-        const { id, result } = e.data;
-        // find task by id
-        const { meshA, resolve } = this.workerTasks.find((t) => t.id === id);
-        // remove task from list
-        this.workerTasks = this.workerTasks.filter((t) => t.id !== id);
-        // resolve task
-        resolve(
-          CSG.toMesh(CSG.fromRawObj(result), meshA.matrix, meshA.material)
-        );
-      };
-    }
-    return this.worker;
+    this.worker = new Worker('./worker.js');
+    this.worker.onmessage = (e) => {
+      const { id, result } = e.data;
+      // find task by id
+      const { meshA, resolve } = this.workerTasks.find((t) => t.id === id);
+      // remove task from list
+      this.workerTasks = this.workerTasks.filter((t) => t.id !== id);
+      this.isBusy = false;
+      // resolve task
+      resolve(CSG.toMesh(CSG.fromRawObj(result), meshA.matrix, meshA.material));
+    };
   }
 
   /**
    * Terminates the underlying web worker.
    */
-  static destroy(): void {
+  destroy(): void {
     this.worker?.terminate();
     this.worker = undefined;
   }
@@ -46,27 +43,31 @@ export class CsgWorker {
    *
    * Returns a promise that resolves to the result. You probably want to chain the promise using the `then` method rather than awaiting it.
    */
-  static doAsync(
+  doAsync(
     meshA: Mesh,
     meshB: Mesh,
     op: 'union' | 'subtract' | 'intersect'
   ): Promise<Mesh> {
     return new Promise((resolve) => {
-      const worker = this.getWorker();
-      const csgA = CSG.fromMesh(meshA);
-      const csgB = CSG.fromMesh(meshB);
-      const task = {
-        id: this.taskId++,
-        meshA,
-        resolve,
-      } as Task;
-      this.workerTasks.push(task);
-      worker.postMessage({
-        id: task.id,
-        csgA,
-        csgB,
-        op,
-      });
+      if (!this.isBusy) {
+        const csgA = CSG.fromMesh(meshA);
+        const csgB = CSG.fromMesh(meshB);
+        const task = {
+          id: this.taskId++,
+          meshA,
+          resolve,
+        } as Task;
+        this.workerTasks.push(task);
+        this.isBusy = true;
+        this.worker.postMessage({
+          id: task.id,
+          csgA,
+          csgB,
+          op,
+        });
+      } else {
+        resolve(null);
+      }
     });
   }
 }

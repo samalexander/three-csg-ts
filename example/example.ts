@@ -1,21 +1,23 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { CSG } from '../src/CSG';
 import { CsgWorker } from '../src/CsgWorker';
 
 let camera: THREE.PerspectiveCamera,
   scene: THREE.Scene,
   renderer: THREE.WebGLRenderer,
   results = new Array<THREE.Mesh>(),
-  asyncUnion: THREE.Mesh,
-  asyncSubtract: THREE.Mesh,
-  asyncIntersect: THREE.Mesh;
+  async1: THREE.Mesh,
+  async2: THREE.Mesh,
+  async3: THREE.Mesh;
+const worker1 = new CsgWorker(),
+  worker2 = new CsgWorker(),
+  worker3 = new CsgWorker();
 const box = new THREE.Mesh(
     new THREE.BoxGeometry(2, 2, 2),
     new THREE.MeshNormalMaterial()
   ),
   sphere = new THREE.Mesh(
-    new THREE.SphereGeometry(1.2, 8, 8),
+    new THREE.SphereGeometry(1.2, 16, 16),
     new THREE.MeshNormalMaterial()
   );
 
@@ -51,41 +53,43 @@ function recompute() {
   sphere.updateMatrix();
 
   // ops with box as base mesh
-  results.push(CSG.subtract(box, sphere));
-  results.push(CSG.union(box, sphere));
-  results.push(CSG.intersect(box, sphere));
+  // results.push(CSG.subtract(box, sphere));
+  // results.push(CSG.union(box, sphere));
+  // results.push(CSG.intersect(box, sphere));
   // ops with sphere as base mesh
-  results.push(CSG.subtract(sphere, box));
-  results.push(CSG.union(sphere, box));
-  results.push(CSG.intersect(sphere, box));
+  // results.push(CSG.subtract(sphere, box));
+  // results.push(CSG.union(sphere, box));
+  // results.push(CSG.intersect(sphere, box));
 
-  CsgWorker.doAsync(box, sphere, 'subtract').then((result) => {
-    asyncSubtract?.parent.remove(asyncSubtract);
-    asyncSubtract?.geometry.dispose();
-    asyncSubtract = result;
-    scene.add(result);
-
-    result.position.z -= 5;
-    result.position.x += 15;
+  worker1.doAsync(box, sphere, 'subtract').then((result) => {
+    if (result) {
+      async1?.parent.remove(async1);
+      async1?.geometry.dispose();
+      async1 = result;
+      scene.add(result);
+    }
   });
 
-  CsgWorker.doAsync(box, sphere, 'union').then((result) => {
-    asyncUnion?.parent.remove(asyncUnion);
-    asyncUnion?.geometry.dispose();
-    asyncUnion = result;
-    scene.add(result);
+  worker2.doAsync(box, sphere, 'subtract').then((result) => {
+    if (result) {
+      async2?.parent.remove(async2);
+      async2?.geometry.dispose();
+      async2 = result;
+      scene.add(result);
 
-    result.position.x += 15;
+      result.position.z -= 5;
+    }
   });
 
-  CsgWorker.doAsync(box, sphere, 'intersect').then((result) => {
-    asyncIntersect?.parent.remove(asyncIntersect);
-    asyncIntersect?.geometry.dispose();
-    asyncIntersect = result;
-    scene.add(result);
+  worker3.doAsync(box, sphere, 'subtract').then((result) => {
+    if (result) {
+      async3?.parent.remove(async3);
+      async3?.geometry.dispose();
+      async3 = result;
+      scene.add(result);
 
-    result.position.z += 5;
-    result.position.x += 15;
+      result.position.z += 5;
+    }
   });
 
   for (let i = 0; i < results.length; i++) {
