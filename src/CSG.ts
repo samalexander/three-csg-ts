@@ -18,6 +18,18 @@ import { Vertex } from './Vertex';
  * be combined using the `union()`, `subtract()`, and `intersect()` methods.
  */
 export class CSG {
+  static fromJson(json: any): CSG {
+    return CSG.fromPolygons(
+      json.polygons.map(
+        (p: any) =>
+          new Polygon(
+            p.vertices.map((v: any) => new Vertex(v.pos, v.normal, v.uv, null)),
+            p.shared
+          )
+      )
+    );
+  }
+
   static fromPolygons(polygons: Polygon[]): CSG {
     const csg = new CSG();
     csg.polygons = polygons;
