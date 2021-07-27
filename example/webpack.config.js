@@ -2,7 +2,10 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: path.resolve(__dirname, 'example.ts'),
+  entry: {
+    bundle: path.resolve(__dirname, 'example.ts'),
+    worker: path.resolve(__dirname, '../src/worker.ts'),
+  },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: path.resolve(__dirname),
@@ -20,7 +23,7 @@ module.exports = {
     extensions: ['.ts', '.js'],
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname),
   },
 };

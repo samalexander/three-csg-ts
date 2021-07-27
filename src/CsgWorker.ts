@@ -14,7 +14,7 @@ export class CsgWorker {
 
   private static getWorker(): Worker {
     if (!this.worker) {
-      this.worker = new Worker(new URL('./worker.ts', import.meta.url));
+      this.worker = new Worker('./worker.js');
       this.worker.onmessage = (e) => {
         const { id, result } = JSON.parse(e.data);
         // find task by id
