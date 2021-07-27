@@ -4,5 +4,10 @@
     "module": "CommonJS",
     "outDir": "./lib/cjs"
   },
-  "exclude": ["src/CsgWorker.ts", "src/worker.ts"]
+  "exclude": [
+    "node_modules",
+    "**/__tests__/*",
+    "src/CsgWorker.ts",
+    "src/worker.ts"
+  ]
 }

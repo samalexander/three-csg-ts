@@ -15,7 +15,7 @@ export class Vertex {
   uv: Vector;
   color: Vector;
 
-  constructor(pos: Vector, normal: Vector, uv: Vector, color: Vector) {
+  constructor(pos: Vector, normal: Vector, uv: Vector, color?: Vector) {
     this.pos = new Vector().copy(pos);
     this.normal = new Vector().copy(normal);
     this.uv = new Vector().copy(uv);

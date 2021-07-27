@@ -23,7 +23,7 @@ export class CSG {
       json.polygons.map(
         (p: any) =>
           new Polygon(
-            p.vertices.map((v: any) => new Vertex(v.pos, v.normal, v.uv, null)),
+            p.vertices.map((v: any) => new Vertex(v.pos, v.normal, v.uv)),
             p.shared
           )
       )
