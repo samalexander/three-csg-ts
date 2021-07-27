@@ -18,9 +18,9 @@ import { Vertex } from './Vertex';
  * be combined using the `union()`, `subtract()`, and `intersect()` methods.
  */
 export class CSG {
-  static fromJson(json: any): CSG {
+  static fromRawObj(obj: any): CSG {
     return CSG.fromPolygons(
-      json.polygons.map(
+      obj.polygons.map(
         (p: any) =>
           new Polygon(
             p.vertices.map((v: any) => new Vertex(v.pos, v.normal, v.uv)),

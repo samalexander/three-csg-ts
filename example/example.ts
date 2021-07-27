@@ -1,11 +1,15 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { CSG } from '../src';
+import { CSG } from '../src/CSG';
+import { CsgWorker } from '../src/CsgWorker';
 
 let camera: THREE.PerspectiveCamera,
   scene: THREE.Scene,
   renderer: THREE.WebGLRenderer,
-  results = new Array<THREE.Mesh>();
+  results = new Array<THREE.Mesh>(),
+  asyncUnion: THREE.Mesh,
+  asyncSubtract: THREE.Mesh,
+  asyncIntersect: THREE.Mesh;
 const box = new THREE.Mesh(
     new THREE.BoxGeometry(2, 2, 2),
     new THREE.MeshNormalMaterial()
@@ -54,6 +58,35 @@ function recompute() {
   results.push(CSG.subtract(sphere, box));
   results.push(CSG.union(sphere, box));
   results.push(CSG.intersect(sphere, box));
+
+  CsgWorker.doAsync(box, sphere, 'subtract').then((result) => {
+    asyncSubtract?.parent.remove(asyncSubtract);
+    asyncSubtract?.geometry.dispose();
+    asyncSubtract = result;
+    scene.add(result);
+
+    result.position.z -= 5;
+    result.position.x += 15;
+  });
+
+  CsgWorker.doAsync(box, sphere, 'union').then((result) => {
+    asyncUnion?.parent.remove(asyncUnion);
+    asyncUnion?.geometry.dispose();
+    asyncUnion = result;
+    scene.add(result);
+
+    result.position.x += 15;
+  });
+
+  CsgWorker.doAsync(box, sphere, 'intersect').then((result) => {
+    asyncIntersect?.parent.remove(asyncIntersect);
+    asyncIntersect?.geometry.dispose();
+    asyncIntersect = result;
+    scene.add(result);
+
+    result.position.z += 5;
+    result.position.x += 15;
+  });
 
   for (let i = 0; i < results.length; i++) {
     const result = results[i];
