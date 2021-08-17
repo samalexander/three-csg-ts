@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.7](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.6...v3.1.7) (2021-08-17)
+
+
+### Bug Fixes
+
+* example tests all 3 operators ([0d041dd](https://github.com/Jiro-Digital/three-csg-ts/commit/0d041ddf42f94a761bae6be7dd3945b0ba2b7411))
+* upgrade dependencies ([46f6358](https://github.com/Jiro-Digital/three-csg-ts/commit/46f6358fd4cc354c3180b75a3329210cb4d1fad0))
+
 ### [3.1.6](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.5...v3.1.6) (2021-07-16)
 
 
