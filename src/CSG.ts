@@ -75,8 +75,6 @@ export class CSG {
         for (const grp of grps) {
           if (index[i] >= grp.start && index[i] < grp.start + grp.count) {
             polys[pli] = new Polygon(vertices, grp.materialIndex);
-          } else {
-            polys[pli] = new Polygon(vertices, undefined);
           }
         }
       } else {
@@ -99,6 +97,7 @@ export class CSG {
     const uvs = new NBuf2(triCount * 2 * 3);
     let colors: NBuf3;
     const grps = [];
+    const dgrp = [];
     for (const p of ps) {
       const pvs = p.vertices;
       const pvlen = pvs.length;
@@ -109,12 +108,8 @@ export class CSG {
         if (!colors) colors = new NBuf3(triCount * 3 * 3);
       }
       for (let j = 3; j <= pvlen; j++) {
-        p.shared !== undefined &&
-          grps[p.shared].push(
-            vertices.top / 3,
-            vertices.top / 3 + 1,
-            vertices.top / 3 + 2
-          );
+        const grp = p.shared === undefined ? dgrp : grps[p.shared];
+        grp.push(vertices.top / 3, vertices.top / 3 + 1, vertices.top / 3 + 2);
         vertices.write(pvs[0].pos);
         vertices.write(pvs[j - 2].pos);
         vertices.write(pvs[j - 1].pos);
@@ -151,6 +146,8 @@ export class CSG {
         gbase += grps[gi].length;
         index = index.concat(grps[gi]);
       }
+      geom.addGroup(gbase, dgrp.length, grps.length);
+      index = index.concat(dgrp);
       geom.setIndex(index);
     }
     const inv = new Matrix4().copy(toMatrix).invert();
