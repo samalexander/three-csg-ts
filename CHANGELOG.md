@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.9](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.8...v3.1.9) (2021-09-06)
+
+
+### Bug Fixes
+
+* filter out polygons with NaN normals after cloning CSG ([#41](https://github.com/Jiro-Digital/three-csg-ts/issues/41)) ([d4db844](https://github.com/Jiro-Digital/three-csg-ts/commit/d4db8444baed6a232f628dacf2cada605e0b92fc))
+
 ### [3.1.8](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.7...v3.1.8) (2021-08-31)
 
 
