@@ -211,9 +211,9 @@ export class CSG {
 
   clone(): CSG {
     const csg = new CSG();
-    csg.polygons = this.polygons.map((p) => {
-      return p.clone();
-    });
+    csg.polygons = this.polygons
+      .map((p) => p.clone())
+      .filter((p) => Number.isFinite(p.plane.w));
     return csg;
   }
 
