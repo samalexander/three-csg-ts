@@ -5,7 +5,7 @@ module.exports = {
   entry: path.resolve(__dirname, 'example.ts'),
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: path.resolve(__dirname),
+    static: path.resolve(__dirname),
   },
   module: {
     rules: [
