@@ -27,7 +27,7 @@ By using different combinations of these 3 operations, and changing the order of
 
 ## Example usage
 
-```
+```ts
 import * as THREE from 'three';
 import { CSG } from 'three-csg-ts';
 
