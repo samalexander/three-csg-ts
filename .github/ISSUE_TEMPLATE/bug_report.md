@@ -9,8 +9,8 @@ assignees: ''
 **Describe the bug**
 A clear and concise description of what the bug is.
 
-**To Reproduce**
-Steps to reproduce the behavior:
+**Minimal reproduction of issue**
+Provide a [Stackblitz](https://stackblitz.com/) (or similar) that demonstrates the issue.
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
