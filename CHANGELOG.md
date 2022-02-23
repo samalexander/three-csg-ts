@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.10](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.9...v3.1.10) (2022-02-23)
+
+
+### Bug Fixes
+
+* upgrade dependencies ([942634c](https://github.com/Jiro-Digital/three-csg-ts/commit/942634c981995fa78863972c79f732d9426773a5))
+* upgrade dependencies ([06ebed6](https://github.com/Jiro-Digital/three-csg-ts/commit/06ebed65a639da9aafd1be9739c938981420333c))
+* upgrade dependencies ([df16ef9](https://github.com/Jiro-Digital/three-csg-ts/commit/df16ef9f4512ce85c2a6931121d5ea148d33f807))
+
 ### [3.1.9](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.8...v3.1.9) (2021-09-06)
 
 
