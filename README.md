@@ -32,7 +32,10 @@ import * as THREE from 'three';
 import { CSG } from 'three-csg-ts';
 
 // Make 2 meshes..
-const box = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), new THREE.MeshNormalMaterial());
+const box = new THREE.Mesh(
+  new THREE.BoxGeometry(2, 2, 2),
+  new THREE.MeshNormalMaterial()
+);
 const sphere = new THREE.Mesh(new THREE.SphereGeometry(1.2, 8, 8));
 
 // Make sure the .matrix of each mesh is current
