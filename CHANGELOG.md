@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.11](https://github.com/samalexander/three-csg-ts/compare/v3.1.10...v3.1.11) (2022-08-22)
+
+
+### Bug Fixes
+
+* Fix finding group by index ([#53](https://github.com/samalexander/three-csg-ts/issues/53)) ([c0abddd](https://github.com/samalexander/three-csg-ts/commit/c0abddd202653e1e787352b9f34bd062c07ae4a8))
+* upgrade dependencies ([c916120](https://github.com/samalexander/three-csg-ts/commit/c916120705955fc4598678f09fb87a8734165734))
+
 ### [3.1.10](https://github.com/Jiro-Digital/three-csg-ts/compare/v3.1.9...v3.1.10) (2022-02-23)
 
 
