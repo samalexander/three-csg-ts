@@ -73,7 +73,7 @@ export class CSG {
 
       if (objectIndex === undefined && grps && grps.length > 0) {
         for (const grp of grps) {
-          if (index[i] >= grp.start && index[i] < grp.start + grp.count) {
+          if (i >= grp.start && i < grp.start + grp.count) {
             polys[pli] = new Polygon(vertices, grp.materialIndex);
           }
         }
