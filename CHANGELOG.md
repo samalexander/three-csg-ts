@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.12](https://github.com/samalexander/three-csg-ts/compare/v3.1.11...v3.1.12) (2023-03-02)
+
+
+### Bug Fixes
+
+* improve types ([22459f2](https://github.com/samalexander/three-csg-ts/commit/22459f285a9896caa13095f34b103e4398297eb1))
+* upgrade dependencies ([9ad1400](https://github.com/samalexander/three-csg-ts/commit/9ad140066865f2bcd30d4b5d9d60861282ec63b6))
+
 ### [3.1.11](https://github.com/samalexander/three-csg-ts/compare/v3.1.10...v3.1.11) (2022-08-22)
 
 
