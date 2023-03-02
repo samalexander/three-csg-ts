@@ -31,10 +31,10 @@ export class CSG {
     const uvattr = geom.attributes.uv;
     const colorattr = geom.attributes.color;
     const grps = geom.groups;
-    let index;
+    let index: Array<number>;
 
     if (geom.index) {
-      index = geom.index.array;
+      index = geom.index.array as Array<number>;
     } else {
       index = new Array((posattr.array.length / posattr.itemSize) | 0);
       for (let i = 0; i < index.length; i++) index[i] = i;
@@ -81,7 +81,9 @@ export class CSG {
         polys[pli] = new Polygon(vertices, objectIndex);
       }
     }
-    return CSG.fromPolygons(polys.filter((p) => !isNaN(p.plane.normal.x)));
+    return CSG.fromPolygons(
+      polys.filter((p) => !Number.isNaN(p.plane.normal.x))
+    );
   }
 
   static toGeometry(csg: CSG, toMatrix: Matrix4): BufferGeometry {
@@ -207,7 +209,7 @@ export class CSG {
     return CSG.toMesh(csgA.intersect(csgB), meshA.matrix, meshA.material);
   }
 
-  private polygons = new Array<Polygon>();
+  private polygons: Polygon[] = [];
 
   clone(): CSG {
     const csg = new CSG();
