@@ -64,9 +64,9 @@ export class CSG {
           new Vector(u, v, 0),
           colorattr &&
             new Vector(
-              colorattr.array[vt],
-              colorattr.array[vt + 1],
-              colorattr.array[vt + 2]
+              colorattr.array[vp],
+              colorattr.array[vp + 1],
+              colorattr.array[vp + 2]
             )
         );
       }
