@@ -5,6 +5,7 @@ import {
   Matrix3,
   Matrix4,
   Mesh,
+  TypedArray,
   Vector3,
 } from 'three';
 import { NBuf2, NBuf3 } from './NBuf';
@@ -31,12 +32,12 @@ export class CSG {
     const uvattr = geom.attributes.uv;
     const colorattr = geom.attributes.color;
     const grps = geom.groups;
-    let index: Array<number>;
+    let index: TypedArray;
 
     if (geom.index) {
-      index = geom.index.array as Array<number>;
+      index = geom.index.array;
     } else {
-      index = new Array((posattr.array.length / posattr.itemSize) | 0);
+      index = new Uint16Array((posattr.array.length / posattr.itemSize) | 0);
       for (let i = 0; i < index.length; i++) index[i] = i;
     }
 
