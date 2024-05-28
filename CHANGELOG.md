@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/samalexander/three-csg-ts/compare/v3.1.14...v3.2.0) (2024-05-28)
+
+
+### Features
+
+* fix for TypedArray added in r154 ([07fc9de](https://github.com/samalexander/three-csg-ts/commit/07fc9de2cfe256cb0b12282b662ecd5129878311))
+
 ### [3.1.14](https://github.com/samalexander/three-csg-ts/compare/v3.1.13...v3.1.14) (2024-02-29)
 
 
